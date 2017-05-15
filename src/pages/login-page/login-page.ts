@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { Dropbox } from '../../providers/dropbox';
 
@@ -9,7 +9,7 @@ import { Dropbox } from '../../providers/dropbox';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public dropbox: Dropbox) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dropbox: Dropbox) {
 
   }
 
