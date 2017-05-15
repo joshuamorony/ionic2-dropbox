@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { InAppBrowser } from 'ionic-native';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 
@@ -13,13 +13,12 @@ export class Dropbox {
 	redirectURI: any;
 	url: any;
 
-	constructor(public http: Http) {
+	constructor(public http: Http, public iab: InAppBrowser) {
 
 	    //OAuth
 	    this.appKey = 'YOUR-APP-KEY';
 	    this.redirectURI = 'http://localhost';
 	    this.url = 'https://www.dropbox.com/1/oauth2/authorize?client_id=' + this.appKey + '&redirect_uri=' + this.redirectURI + '&response_type=token';
-
 	}
 
 	setAccessToken(token) {
@@ -89,7 +88,7 @@ export class Dropbox {
 
 		return new Promise((resolve, reject) => {
 
-		  let browser = new InAppBrowser(this.url, '_blank');
+		  let browser = this.iab.create(this.url, '_blank');
 
 		  let listener = browser.on('loadstart').subscribe((event: any) => {
 
